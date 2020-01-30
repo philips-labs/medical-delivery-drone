@@ -55,6 +55,11 @@ func main() {
 			}
 		})
 
+		drone.On(tello.FlightDataEvent, func(data interface{}) {
+			fd := data.(*tello.FlightData)
+			fmt.Printf("%+v\n", fd)
+		})
+
 		drone.TakeOff()
 		<-time.After(2 * time.Second)
 		drone.Up(15)
