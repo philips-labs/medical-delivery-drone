@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Drone recognition</title>
+    <script src="face-api.js"></script>
+    <script src="workshop.js"></script>
+  </head>
+  <body>
+
+    <div style="position: relative" class="margin">
+      <video onplay="onPlay(this)" id="inputVideo" autoplay muted></video>
+      <canvas id="overlay" style="position: absolute;left: 0"/>
+    </div>
+  </body>
+</html>
