@@ -1,5 +1,7 @@
 # Medical Delivery Drone
 
+> :warning: **This projects is part of an hackaton and by no means complete!** Don't use this for production!
+
 To run this solution you will need to install the following dependencies.
 
 ```bash
