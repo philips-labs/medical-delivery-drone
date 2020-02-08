@@ -11,9 +11,13 @@ import (
 	"github.com/philips-labs/medical-delivery-drone/video"
 )
 
+var (
+	drone *tello.Driver
+)
+
 // Connect connects to the drone and starts the video
 func Connect(ctx context.Context, converter *video.Converter) (<-chan []byte, error) {
-	drone := tello.NewDriver("8890")
+	drone = tello.NewDriver("8890")
 
 	initDrone := func() {
 		_ = drone.On(tello.ConnectedEvent, func(data interface{}) {
@@ -21,8 +25,9 @@ func Connect(ctx context.Context, converter *video.Converter) (<-chan []byte, er
 			_ = drone.StartVideo()
 			_ = drone.SetVideoEncoderRate(tello.VideoBitRateAuto)
 			_ = drone.SetExposure(0)
+			go startController(performMove, drone)
 
-			gobot.Every(30*time.Millisecond, func() {
+			gobot.Every(10*time.Millisecond, func() {
 				_ = drone.StartVideo()
 			})
 		})
