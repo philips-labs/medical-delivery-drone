@@ -16,6 +16,8 @@ go mod download
 
 ```bash
 go build .
+# or
+make build
 ```
 
 ## Run
